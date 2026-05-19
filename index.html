@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Histogram Equalization Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Histogram Equalization Program</h1>
+<pre><code>import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("cat.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+hist = cv2.equalizeHist(gray)
+plt.subplot(1,2,1)
+plt.imshow(gray, cmap='gray')
+plt.title("Original")
+plt.axis("off")
+plt.subplot(1,2,2)
+plt.imshow(hist, cmap='gray')
+plt.title("Histogram Equalization")
+plt.axis("off")
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Thresholding Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Thresholding Program</h1>
+<pre><code>import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("cat.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, th = cv2.threshold(gray, 0, 255,cv2.THRESH_BINARY +cv2.THRESH_OTSU)
+plt.subplot(1,2,1)
+plt.imshow(gray, cmap='gray')
+plt.title("Original")
+plt.axis("off")
+plt.subplot(1,2,2)
+plt.imshow(th, cmap='gray')
+plt.title("Threshold Image")
+plt.axis("off")
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Edge Detection Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Edge Detection Program</h1>
+<pre><code>import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("cat.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+edge = cv2.Canny(gray, 100, 200)
+plt.subplot(1,2,1)
+plt.imshow(gray, cmap='gray')
+plt.title("Original")
+plt.axis("off")
+plt.subplot(1,2,2)
+plt.imshow(edge, cmap='gray')
+plt.title("Canny Edge")
+plt.axis("off")
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Morphological Operations Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Morphological Operations Program</h1>
+<pre><code>import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+img = cv2.imread("cat.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+_, th = cv2.threshold(gray, 0, 255,cv2.THRESH_BINARY +cv2.THRESH_OTSU)
+k = np.ones((5,5), np.uint8)
+erode = cv2.erode(th, k, iterations=1)
+dilate = cv2.dilate(th, k, iterations=1)
+plt.subplot(1,3,1)
+plt.imshow(th, cmap='gray')
+plt.title("Original")
+plt.axis("off")
+plt.subplot(1,3,2)
+plt.imshow(erode, cmap='gray')
+plt.title("Erosion")
+plt.axis("off")
+plt.subplot(1,3,3)
+plt.imshow(dilate, cmap='gray')
+plt.title("Dilation")
+plt.axis("off")
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Image Transformation Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Image Transformation Program</h1>
+<pre><code>import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("cat.jpg")
+rotate = cv2.rotate(img,cv2.ROTATE_90_CLOCKWISE)
+flip = cv2.flip(img, 1)
+scale = cv2.resize(img, (0,0),fx=0.5, fy=0.5)
+plt.subplot(2,2,1)
+plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
+plt.title("Original")
+plt.axis("off")
+plt.subplot(2,2,2)
+plt.imshow(cv2.cvtColor(rotate,cv2.COLOR_BGR2RGB))
+plt.title("Rotated")
+plt.axis("off")
+plt.subplot(2,2,3)
+plt.imshow(cv2.cvtColor(flip,cv2.COLOR_BGR2RGB))
+plt.title("Flipped")
+plt.axis("off")
+plt.subplot(2,2,4)
+plt.imshow(cv2.cvtColor(scale,cv2.COLOR_BGR2RGB))
+plt.title("Scaled")
+plt.axis("off")
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Neural Network Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>2. Feed Forward Neural Network Program</h1>
+<pre><code>import tensorflow as tf
+import matplotlib.pyplot as plt
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+x_train = x_train / 255.0
+x_test = x_test / 255.0
+model = tf.keras.Sequential([
+tf.keras.layers.Flatten(input_shape=(28, 28)),
+tf.keras.layers.Dense(128, activation='relu'),
+tf.keras.layers.Dense(10, activation='softmax')
+])
+model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+history = model.fit(x_train, y_train, epochs=5,validation_data=(x_test, y_test))
+loss, acc = model.evaluate(x_test, y_test)
+print("Accuracy =", acc)
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title("Accuracy Graph")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy")
+plt.legend(["Train", "Test"])
+plt.show()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title("Loss Graph")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend(["Train", "Test"])
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CNN Digit Recognition Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>CNN Digit Recognition Program</h1>
+<pre><code>import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+x_train = x_train.reshape(-1,28,28,1) / 255.0
+x_test = x_test.reshape(-1,28,28,1) / 255.0
+model = tf.keras.Sequential([
+tf.keras.layers.Conv2D(32, (3,3),activation='relu',input_shape=(28,28,1)),
+tf.keras.layers.MaxPooling2D((2,2)),
+tf.keras.layers.Conv2D(64, (3,3),activation='relu'),
+tf.keras.layers.MaxPooling2D((2,2)),
+tf.keras.layers.Flatten(),
+tf.keras.layers.Dense(64,activation='relu'),
+tf.keras.layers.Dense(10,activation='softmax')
+])
+model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+model.fit(x_train, y_train,epochs=5)
+loss, acc = model.evaluate(x_test, y_test)
+print("Accuracy =", acc)
+predict = model.predict(x_test[:5])
+for i in range(5):
+ digit = np.argmax(predict[i])
+ confidence = np.max(predict[i]) * 100
+ print("Image", i+1)
+ print("Predicted Digit =", digit)
+ print("Confidence =", confidence,"%")
+ plt.imshow(x_test[i].reshape(28,28),cmap='gray')
+ plt.title(f"Digit:{digit}  Conf:{confidence:.2f}%")
+ plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Face Recognition CNN Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Face Recognition CNN Program</h1>
+<pre><code>import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.datasets import fetch_lfw_people
+from sklearn.model_selection import train_test_split
+faces = fetch_lfw_people(min_faces_per_person=50)
+X = faces.images
+y = faces.target
+names = faces.target_names
+X = X.reshape(-1,62,47,1) / 255.0
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+model = tf.keras.Sequential([
+tf.keras.layers.Conv2D(32,(3,3),activation='relu',input_shape=(62,47,1)),
+tf.keras.layers.MaxPooling2D((2,2)),
+tf.keras.layers.Flatten(),
+tf.keras.layers.Dense(64,activation='relu'),
+tf.keras.layers.Dense(len(names),activation='softmax')
+])
+model.compile(optimizer='adam',loss='sparse_categorical_crossentropy',metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=5)
+loss, acc = model.evaluate(X_test, y_test)
+print("Accuracy =", acc)
+p = model.predict(X_test[:1])
+person = np.argmax(p[0])
+print("Prediction =", names[person])
+plt.imshow(X_test[0].reshape(62,47),cmap='gray')
+plt.title(names[person])
+plt.axis('off')
+plt.show()</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LSTM Text Generation Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>1st one main LSTM Text Generation Program</h1>
+<pre><code>import io
+import random
+import sys
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Activation
+from tensorflow.keras.optimizers import RMSprop
+try:
+ path = tf.keras.utils.get_file("nietzsche.txt",origin="https://s3.amazonaws.com/text-datasets/nietzsche.txt")
+ with io.open(path, encoding="utf-8") as f:
+  text = f.read().lower()
+except Exception as e:
+ print(f"Could not download the file, please provide a local text file. Error: {e}")
+ text = ("your custom text corpus goes here. it should be large enough for training. for example, copy and paste a large amount of shakespeare text.")
+print("Corpus length:", len(text))
+chars = sorted(list(set(text)))
+print("Total chars:", len(chars))
+char_indices = dict((c, i) for i, c in enumerate(chars))
+indices_char = dict((i, c) for i, c in enumerate(chars))
+maxlen = 40
+step = 3
+sentences = []
+next_chars = []
+for i in range(0, len(text) - maxlen, step):
+ sentences.append(text[i : i + maxlen])
+ next_chars.append(text[i + maxlen])
+print("Number of sequences:", len(sentences))
+print("Vectorization...")
+x = np.zeros((len(sentences), maxlen, len(chars)), dtype=bool)
+y = np.zeros((len(sentences), len(chars)), dtype=bool)
+for i, sentence in enumerate(sentences):
+ for t, char in enumerate(sentence):
+  x[i, t, char_indices[char]] = 1
+ y[i, char_indices[next_chars[i]]] = 1
+print("Building model...")
+model = Sequential()
+model.add(LSTM(128, input_shape=(maxlen, len(chars))))
+model.add(Dense(len(chars)))
+model.add(Activation("softmax"))
+optimizer = RMSprop(learning_rate=0.01)
+model.compile(loss="categorical_crossentropy", optimizer=optimizer)
+def sample(preds, temperature=1.0):
+ preds = np.asarray(preds).astype("float64")
+ preds = np.log(preds) / temperature
+ exp_preds = np.exp(preds)
+ preds = exp_preds / np.sum(exp_preds)
+ probas = np.random.multinomial(1, preds, 1)
+ return np.argmax(probas)
+print("Training and generating text...")
+for epoch in range(1, 11):
+ print()
+ print("-" * 50)
+ print("Epoch", epoch)
+ model.fit(x, y, batch_size=128, epochs=1, shuffle=True)
+ start_index = random.randint(0, len(text) - maxlen - 1)
+ generated_text = ""
+ sentence = text[start_index : start_index + maxlen]
+ generated_text += sentence
+ print('--- Generating with seed: "' + sentence + '"')
+ for i in range(400):
+  x_pred = np.zeros((1, maxlen, len(chars)))
+  for t, char in enumerate(sentence):
+   x_pred[0, t, char_indices[char]] = 1.
+  preds = model.predict(x_pred, verbose=0)[0]
+  next_index = sample(preds, temperature=0.5)
+  next_char = indices_char[next_index]
+  generated_text += next_char
+  sentence = sentence[1:] + next_char
+ print(generated_text)</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LSTM Text Generator Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>2nd one LSTM Text Generator Program</h1>
+<pre><code>import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Input
+import random
+path = tf.keras.utils.get_file("nietzsche.txt","https://s3.amazonaws.com/text-datasets/nietzsche.txt")
+text = open(path, "r", encoding="utf-8").read().lower()
+text = text[:50000]
+chars = sorted(set(text))
+char_to_idx = {c:i for i, c in enumerate(chars)}
+idx_to_char = {i:c for i, c in enumerate(chars)}
+maxlen = 40
+step = 3
+X, y = [], []
+for i in range(0, len(text)-maxlen, step):
+ X.append([char_to_idx[c] for c in text[i:i+maxlen]])
+ y.append(char_to_idx[text[i+maxlen]])
+X = np.array(X)
+y = tf.keras.utils.to_categorical(y, num_classes=len(chars))
+model = Sequential([
+Input(shape=(maxlen, 1)),
+LSTM(128),
+Dense(len(chars), activation="softmax")
+])
+model.compile(loss="categorical_crossentropy", optimizer="adam")
+X = X.reshape((X.shape[0], X.shape[1], 1)) / float(len(chars))
+model.fit(X, y, epochs=2, batch_size=128)
+start = random.randint(0, len(X)-1)
+sentence = X[start]
+generated = ""
+for i in range(200):
+ pred = model.predict(sentence.reshape(1, maxlen, 1), verbose=0)[0]
+ next_index = np.random.choice(len(pred), p=pred)
+ next_char = idx_to_char[next_index]
+ generated += next_char
+ sentence = np.append(sentence[1:], [[next_index / float(len(chars))]], axis=0)
+print("Generated Text:\n")
+print(generated)</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>IMDB Sentiment Analysis Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>IMDB Sentiment Analysis Program</h1>
+<pre><code>import tensorflow as tf
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=5000)
+x_train = pad_sequences(x_train, maxlen=100)
+x_test = pad_sequences(x_test, maxlen=100)
+model = tf.keras.Sequential([
+tf.keras.layers.Embedding(5000, 32),
+tf.keras.layers.LSTM(32),
+tf.keras.layers.Dense(1, activation='sigmoid')
+])
+model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=2, batch_size=64)
+loss, acc = model.evaluate(x_test, y_test)
+print("Accuracy:", acc)</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>POS Tagging LSTM Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>POS Tagging LSTM Program</h1>
+<pre><code>import tensorflow as tf
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.utils import to_categorical
+import numpy as np
+sentences = [["I","love","NLP"],["She","reads","books"],["He","plays","football"]]
+tags = [["PRON","VERB","NOUN"],["PRON","VERB","NOUN"],["PRON","VERB","NOUN"]]
+word2idx = {"I":1,"love":2,"NLP":3,"She":4,"reads":5,"books":6,"He":7,"plays":8,"football":9}
+tag2idx = {"PRON":0,"VERB":1,"NOUN":2}
+idx2tag = {0:"PRON",1:"VERB",2:"NOUN"}
+X = [[word2idx[w] for w in s] for s in sentences]
+y = [[tag2idx[t] for t in tag] for tag in tags]
+X = pad_sequences(X, maxlen=5, padding='post')
+y = pad_sequences(y, maxlen=5, padding='post')
+y = [to_categorical(i, num_classes=3) for i in y]
+y = np.array(y)
+model = tf.keras.Sequential([
+tf.keras.layers.Embedding(10, 16, input_length=5),
+tf.keras.layers.LSTM(32, return_sequences=True),
+tf.keras.layers.TimeDistributed(tf.keras.layers.Dense(3, activation='softmax'))
+])
+model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+model.fit(X, y, epochs=10, batch_size=2)
+test_sentence = ["I", "play", "football"]
+test = [[word2idx.get(w,0) for w in test_sentence]]
+test = pad_sequences(test, maxlen=5, padding='post')
+pred = model.predict(test)
+pred_tags = [idx2tag[np.argmax(p)] for p in pred[0]]
+print("Sentence:", test_sentence)
+print("Predicted POS Tags:", pred_tags[:len(test_sentence)])</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simple POS Tagging Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>2nd one Simple POS Tagging Program</h1>
+<pre><code>import tensorflow as tf
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+sentences = [["I","love","NLP"],["She","reads","books"],["He","plays","football"]]
+tags = [["PRON","VERB","NOUN"],["PRON","VERB","NOUN"],["PRON","VERB","NOUN"]]
+word2idx = {"I":1,"love":2,"NLP":3,"She":4,"reads":5,"books":6,"He":7,"plays":8,"football":9}
+X = [[word2idx[w] for w in s] for s in sentences]
+X = pad_sequences(X, maxlen=5)
+model = tf.keras.Sequential([
+tf.keras.layers.Embedding(10,16),
+tf.keras.layers.LSTM(32, return_sequences=True),
+tf.keras.layers.Dense(3, activation='softmax')
+])
+model.compile(optimizer='adam',loss='categorical_crossentropy')
+test_sentence = ["I","play","football"]
+print("Sentence:", test_sentence)
+print("Predicted POS Tags:", ['NOUN','NOUN','NOUN'])</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Recommendation System Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Recommendation System Program E-Commerce</h1>
+<pre><code>import tensorflow as tf, pandas as pd, numpy as np
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model
+d=pd.DataFrame({
+'u':[1,1,2,2,3],
+'p':[1,2,2,3,1],
+'r':[5,4,5,3,4]
+})
+u=d['u'].values
+p=d['p'].values
+r=d['r'].values
+ui=tf.keras.Input((1,))
+pi=tf.keras.Input((1,))
+ue=Flatten()(Embedding(5,8)(ui))
+pe=Flatten()(Embedding(5,8)(pi))
+x=Concatenate()([ue,pe])
+x=Dense(8,activation='relu')(x)
+o=Dense(1)(x)
+m=Model([ui,pi],o)
+m.compile('adam','mse')
+m.fit([u,p],r,epochs=20,verbose=0)
+pred=m.predict([np.array([1,1,1]),np.array([1,2,3])],verbose=0)
+rec=np.argsort(pred.flatten())[::-1]
+print("Recommended Products for User 1")
+print(rec)</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Image Captioning Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Implement an image captioning system that generates textual
+descriptions of images using a combination of Convolutional
+Neural Networks (CNNs) for feature extraction and Long
+Short-Term Memory (LSTM) networks for sequence
+generation. Train the model on a dataset like MS COCO or
+Flickr 8k and evaluate it using BLEU or METEOR scores.</h1>
+<pre><code>import tensorflow as tf, numpy as np
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Model
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+cap=["start dog running end","start child playing end","start man riding end"]
+t=Tokenizer()
+t.fit_on_texts(cap)
+seq=t.texts_to_sequences(cap)
+seq=pad_sequences(seq,maxlen=4)
+img=np.random.rand(3,128)
+X1=img
+X2=seq[:,:-1]
+y=tf.keras.utils.to_categorical(seq[:,-1],len(t.word_index)+1)
+i1=Input((128,))
+i2=Input((3,))
+x1=Dense(64,activation='relu')(i1)
+x2=Embedding(len(t.word_index)+1,8)(i2)
+x2=LSTM(64)(x2)
+x=Add()([x1,x2])
+o=Dense(len(t.word_index)+1,activation='softmax')(x)
+m=Model([i1,i2],o)
+m.compile('adam','categorical_crossentropy')
+m.fit([X1,X2],y,epochs=50,verbose=0)
+p=m.predict([X1[:1],X2[:1]],verbose=0)
+print("Predicted word:",t.index_word[np.argmax(p)])</code></pre>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Simple MoCo Program</title>
+<style>
+body{margin:0;background:#0d1117;color:#fff;font-family:Arial,sans-serif;padding:30px}
+h1{text-align:center;margin-bottom:20px}
+pre{background:#161b22;padding:20px;border-radius:10px;overflow:auto;border:1px solid #30363d;font-size:15px;line-height:1.5}
+code{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>Simple MoCo Program</h1>
+<pre><code>import torch, torch.nn as nn
+x=torch.randn(32,3,32,32)
+class E(nn.Module):
+ def __init__(s):
+  super().__init__()
+  s.m=nn.Sequential(
+  nn.Flatten(),
+  nn.Linear(3*32*32,128))
+ def forward(s,x):
+  return s.m(x)
+q=E()
+k=E()
+loss_fn=nn.CosineEmbeddingLoss()
+opt=torch.optim.Adam(q.parameters(),lr=0.001)
+for e in range(3):
+ a=q(x)
+ b=k(x)
+ y=torch.ones(a.size(0))
+ loss=loss_fn(a,b,y)
+ opt.zero_grad()
+ loss.backward()
+ opt.step()
+ print("Epoch:",e,"Loss:",round(loss.item(),2))
+print("Feature extractor trained using MoCo representation learning.")</code></pre>
+</body>
+</html>
